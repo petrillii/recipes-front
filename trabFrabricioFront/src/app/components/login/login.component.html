@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <form (ngSubmit)="onSubmit()" class="form" [formGroup]="formLogin">
+    <div class="input-usuario">
+      <input type="text" formControlName="usuario">
+    </div>
+    <div class="input-senha">
+      <input type="text" formControlName="senha">
+    </div>
+    <div class="submit">
+      <button type="submit" [disabled]="!formLogin.valid">
+        Login
+      </button>
+    </div>
+  </form>
+</div>
