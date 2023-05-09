@@ -1,3 +1,4 @@
+import { LoginService } from './services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -14,11 +15,16 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
-
+    this.loginService.obterCep("14057080").subscribe((info)=>{
+      console.log(info)
+    })
   }
+
+
 
   onSubmit(){
     console.log(this.formLogin.valid);
