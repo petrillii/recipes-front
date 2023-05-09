@@ -1,3 +1,5 @@
+import { EnderecoModel } from "src/app/shared-assets/endereco.model";
+
 export class CadastroLoginModel{
   nome: string;
   email: string;

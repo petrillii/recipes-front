@@ -1,15 +1,20 @@
-<div class="container-fluid">
-  <form (ngSubmit)="onSubmit()" class="form" [formGroup]="formLogin">
-    <div class="input-usuario">
-      <input type="text" formControlName="usuario">
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username">
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message">
+        Username is required.
+      </div>
     </div>
-    <div class="input-senha">
-      <input type="text" formControlName="senha">
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" maxLength="8">
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        Password is required.
+      </div>
     </div>
-    <div class="submit">
-      <button type="submit" [disabled]="!formLogin.valid">
-        Login
-      </button>
-    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
   </form>
 </div>

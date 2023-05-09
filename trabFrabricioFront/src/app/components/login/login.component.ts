@@ -1,6 +1,8 @@
 import { LoginService } from './services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginModel } from './models/login.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +10,31 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  formLogin: FormGroup = this.fb.group({
-    usuario: ['', Validators.required],
-    senha: ['', [Validators.required, Validators.minLength(8)]]
+  loginForm: FormGroup = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(8)]]
   })
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService
+    private LoginService: LoginService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.loginService.obterCep("14057080").subscribe((info)=>{
-      console.log(info)
-    })
   }
 
-
-
-  onSubmit(){
-    console.log(this.formLogin.valid);
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const loginModel = new LoginModel(this.loginForm.value)
+      this.LoginService.login(loginModel).subscribe(
+        (data) => {
+          this.toastr.success('Sucesso', data);
+        },
+        (error) => {
+          this.toastr.error('Error', error);
+        }
+      );
+    }
   }
-
 }
