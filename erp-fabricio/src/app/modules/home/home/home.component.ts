@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/authentication/auth.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class DashboardComponent {
+export class HomeComponent {
   isManager: boolean = false;
 
   constructor(private authService: AuthService) { }

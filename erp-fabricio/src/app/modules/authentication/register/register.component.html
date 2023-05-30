@@ -1,1 +1,47 @@
-<p>register works!</p>
+<div class="container">
+  <h2>Cadastro</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" formControlName="nome" class="form-control">
+      <div *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)" class="text-danger">
+        O nome é obrigatório
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sobrenome">Sobrenome</label>
+      <input type="text" id="sobrenome" formControlName="sobrenome" class="form-control">
+      <div *ngIf="sobrenome?.invalid && (sobrenome?.dirty || sobrenome?.touched)" class="text-danger">
+        O sobrenome é obrigatório
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+        Insira um email válido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" formControlName="senha" class="form-control">
+      <div *ngIf="senha?.invalid && (senha?.dirty || senha?.touched)" class="text-danger">
+        A senha é obrigatória
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmarSenha">Confirmar Senha</label>
+      <input type="password" id="confirmarSenha" formControlName="confirmarSenha" class="form-control">
+      <div *ngIf="confirmarSenha?.invalid && (confirmarSenha?.dirty || confirmarSenha?.touched)" class="text-danger">
+        As senhas não coincidem
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+  </form>
+</div>

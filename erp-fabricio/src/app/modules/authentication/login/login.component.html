@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="container p-5">
+  <h2>ENTRAR</h2>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <div class="user">
+        <label for="username" class="">Usuário</label>
+        <input type="text" id="username" formControlName="username">
+      </div>
+      <div class="password">
+        <label for="password">Senha</label>
+        <input type="password" id="password" formControlName="password">
+        <div *ngIf="password?.hasError('minlength') && (password?.dirty || password?.touched)" class="error-message">
+          A senha deve ter no mínimo 8 caracteres.
+        </div>
+      </div>
+    </div>
+    <div class="btn">
+      <button type="submit">Entrar</button>
+      <button type="button" (click)="register()">Cadastrar</button>
+    </div>
+  </form>
+</div>
+
