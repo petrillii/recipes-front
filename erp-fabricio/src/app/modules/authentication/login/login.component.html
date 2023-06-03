@@ -4,8 +4,11 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
       <div class="user">
-        <label for="username" class="">Usuário</label>
-        <input type="text" id="username" formControlName="username">
+        <label for="email" class="">Email</label>
+        <input type="text" id="email" formControlName="email">
+        <div *ngIf="email?.hasError && (email?.dirty || email?.touched)" class="error-message">
+          Digite um email válido
+        </div>
       </div>
       <div class="password">
         <label for="password">Senha</label>
@@ -13,6 +16,11 @@
         <div *ngIf="password?.hasError('minlength') && (password?.dirty || password?.touched)" class="error-message">
           A senha deve ter no mínimo 8 caracteres.
         </div>
+      </div>
+      <div class="forgot-password">
+        <a href="/forgot-password">
+          Esqueceu a senha?
+        </a>
       </div>
     </div>
     <div class="btn">

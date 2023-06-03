@@ -18,15 +18,7 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated().pipe(
       map(isAuthenticated => {
         if (isAuthenticated) {
-          let role = '';
-          this.authService.getUserRole().subscribe(role=>{
-            role = role
-          });
-          if (role = "manager") {
-            return true;
-          } else {
-            return this.router.parseUrl('/login');
-          }
+          return true
         } else {
           return this.router.parseUrl('/login');
         }

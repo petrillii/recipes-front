@@ -12,13 +12,6 @@ export class HomeComponent {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUserRole().subscribe(role => {
-      if (role === 'manager') {
-        this.isManager = true;
-      } else {
-        this.isManager = false;
-        // Redirecionar ou mostrar uma mensagem de erro caso o usuário não seja um gerente
-      }
-    });
+
   }
 }

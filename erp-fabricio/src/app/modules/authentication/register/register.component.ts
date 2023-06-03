@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { LoginRegisterModel } from '../models/login-register.model';
+import { AuthService } from 'src/app/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,26 +12,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
-    nome: ['', Validators.required],
-    sobrenome: ['', Validators.required],
+    username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    senha: ['', Validators.required],
-    confirmarSenha: ['', Validators.required]
-  }, { validators: this.passwordMatchValidator });;
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
+  }, { validators: this.passwordMatchValidator });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit(): void {
   }
 
   passwordMatchValidator(form: FormGroup) {
-    const senha = form.get('senha')?.value;
-    const confirmarSenha = form.get('confirmarSenha')?.value;
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
 
-    if (senha !== confirmarSenha) {
-      form.get('confirmarSenha')?.setErrors({ mismatch: true });
+    if (password !== confirmPassword) {
+      form.get('confirmPassword')?.setErrors({ mismatch: true });
     } else {
-      form.get('confirmarSenha')?.setErrors(null);
+      form.get('confirmPassword')?.setErrors(null);
     }
   }
 
@@ -35,14 +42,21 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
-    // Lógica para realizar o cadastro
-    console.log('Cadastro realizado com sucesso');
+    const loginRegisterModel: LoginRegisterModel = new LoginRegisterModel(this.username?.value, this.password?.value, this.email?.value);
+    this.loginService.register(loginRegisterModel).subscribe(
+      (response) => {
+        if (response.statusCode) {
+          this.authService.login();
+          this.router.navigate(['/home']);
+        } else {
+          console.error("Ocorreu um erro")
+        }
+      }
+    );
   }
 
-  get nome() { return this.registerForm.get('nome'); }
-  get sobrenome() { return this.registerForm.get('sobrenome'); }
+  get username() { return this.registerForm.get('username'); }
   get email() { return this.registerForm.get('email'); }
-  get senha() { return this.registerForm.get('senha'); }
-  get confirmarSenha() { return this.registerForm.get('confirmarSenha'); }
+  get password() { return this.registerForm.get('password'); }
+  get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 }

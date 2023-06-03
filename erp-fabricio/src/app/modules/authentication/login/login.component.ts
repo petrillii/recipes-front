@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/authentication/auth.service';
+import { LoginService } from '../services/login.service';
+import { LoginModel } from '../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +12,22 @@ import { AuthService } from 'src/app/authentication/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required, Validators.email],
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
-  errorMessage: string = '';
+  errorMessage?: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
-  get username() {
-    return this.loginForm.get('username');
+  get email() {
+    return this.loginForm.get('email');
   }
 
   get password() {
@@ -32,17 +35,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login('ADMIN');
-    this.router.navigate(['/home']);
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      // Lógica para verificar as credenciais de login
-      if (username === 'usuario' && password === 'senha') {
-        // Lógica para redirecionar o usuário após o login bem-sucedido
-        console.log('Login bem-sucedido!');
-      } else {
-        this.errorMessage = 'Credenciais inválidas. Por favor, tente novamente.';
-      }
+      const loginData: LoginModel = this.loginForm.value;
+
+      this.loginService.login(loginData).subscribe(
+        (response) => {
+          if (response.statusCode === 200) {
+            this.authService.login();
+            this.router.navigate(['/home']);
+          } else {
+            this.errorMessage = response.message;
+          }
+        }
+      );
     }
   }
 
