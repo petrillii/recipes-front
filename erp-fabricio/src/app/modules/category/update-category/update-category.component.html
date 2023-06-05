@@ -1,0 +1,33 @@
+<div class="container-category">
+  <h2 class="title">Atualizar categoria</h2>
+  <form class="category-form" (ngSubmit)="updateCategory()">
+    <div class="form-group">
+      <label for="category">Categoria:</label>
+      <select
+        class="form-control"
+        id="category"
+        name="category"
+        [(ngModel)]="category"
+        required
+      >
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="newName">Novo nome da categoria:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="newName"
+        name="newName"
+        [(ngModel)]="newName"
+        required
+      />
+    </div>
+    <div class="submit-category">
+      <button class="btn btn-primary" type="submit">Atualizar</button>
+    </div>
+  </form>
+</div>

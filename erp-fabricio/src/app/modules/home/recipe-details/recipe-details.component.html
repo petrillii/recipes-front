@@ -1,1 +1,33 @@
-<p>recipe-details works!</p>
+<div class="recipe-details">
+  <div *ngIf="recipe?.id" >
+    <div class="recipe-image">
+      <img [src]="recipe?.image_url">
+    </div>
+    <div class="recipe-info">
+      <h2 class="recipe-title">{{ recipe?.title }}</h2>
+      <div class="recipe-category">Categoria: {{ recipe?.category?.name }}</div>
+      <h3 class="section-title">Ingredientes</h3>
+      <ul class="ingredient-list">
+        <li *ngFor="let ingredient of recipe?.ingredients">{{ ingredient }}</li>
+      </ul>
+      <h3 class="section-title">Modo de Preparo</h3>
+      <div class="recipe-instructions">{{ recipe?.instructions }}</div>
+    </div>
+    <div class="delete-button-container">
+      <button class="delete-button" style="margin-right: 10px;" (click)="deleteRecipe(recipe?.id)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M17 6L17 3C17 2.46957 16.7893 1.96086 16.4142 1.58579C16.0391 1.21071 15.5304 1 15 1L9 1C8.46957 1 7.96086 1.21071 7.58579 1.58579C7.21071 1.96086 7 2.46957 7 3L7 6M19 6L5 6M19 6L19 21C19 21.5304 18.7893 22.0391 18.4142 22.4142C18.0391 22.7893 17.5304 23 17 23L7 23C6.46957 23 5.96086 22.7893 5.58579 22.4142C5.21071 22.0391 5 21.5304 5 21L5 6H19Z"></path>
+        </svg>
+        Excluir
+      </button>
+      <!-- <button class="delete-button" (click)="editRecipe()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+          <path d="M4 15v4h4l11-11-4-4L4 15zM14 7l3 3"></path>
+        </svg>
+        Editar
+      </button> -->
+    </div>
+  </div>
+</div>
+

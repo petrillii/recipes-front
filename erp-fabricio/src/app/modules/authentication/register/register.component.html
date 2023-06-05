@@ -2,7 +2,7 @@
   <h2>Cadastro</h2>
 
   <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label for="username">Nome</label>
       <input type="text" id="username" formControlName="username" class="form-control">
       <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="text-danger">
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email" class="form-control">
       <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label for="password">Senha</label>
       <input type="password" id="password" formControlName="password" class="form-control">
       <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label for="confirmPassword">Confirmar Senha</label>
       <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
       <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="text-danger">

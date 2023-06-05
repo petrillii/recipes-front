@@ -8,13 +8,13 @@
           (click)="redirectToDetails(recipe.id)"
         />
         <h3>{{ recipe.title }}</h3>
-        <ul>
+        <!-- <ul>
           <li *ngFor="let ingredient of recipe.ingredients">
             {{ ingredient }}
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
-    <div *ngIf="recipes">Carregando...</div>
+    <div *ngIf="!recipes">Carregando...</div>
   </div>
 </div>

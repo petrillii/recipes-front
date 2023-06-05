@@ -12,13 +12,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryModule } from './modules/category/category.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    CreateRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    CategoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

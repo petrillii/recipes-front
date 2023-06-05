@@ -7,6 +7,9 @@ import { HomeComponent } from './modules/home/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ForgotPasswordComponent } from './modules/authentication/forgot-password/forgot-password.component';
 import { RecipeDetailsComponent } from './modules/home/recipe-details/recipe-details.component';
+import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
+import { CreateCategoryComponent } from './modules/category/create-category/create-category.component';
+import { UpdateCategoryComponent } from './modules/category/update-category/update-category.component';
 
 const routes: Routes = [
   {
@@ -29,6 +32,15 @@ const routes: Routes = [
   },
   {
     path: 'recipe/:id', component: RecipeDetailsComponent
+  },
+  {
+    path: 'create-recipe', component: CreateRecipeComponent
+  },
+  {
+    path: 'create-category', component: CreateCategoryComponent
+  },
+  {
+    path: 'update-category', component: UpdateCategoryComponent
   }
 ];
 

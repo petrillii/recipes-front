@@ -1,4 +1,7 @@
 <div class="container p-5">
+  <div class="logo-image">
+    <img src="assets/images/logo.jpeg" alt="">
+  </div>
   <h2>ENTRAR</h2>
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -6,7 +9,7 @@
       <div class="user">
         <label for="email" class="">Email</label>
         <input type="text" id="email" formControlName="email">
-        <div *ngIf="email?.hasError && (email?.dirty || email?.touched)" class="error-message">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
           Digite um email válido
         </div>
       </div>

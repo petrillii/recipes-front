@@ -12,7 +12,7 @@ import { LoginModel } from '../models/login.model';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = this.formBuilder.group({
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
   errorMessage?: string = '';

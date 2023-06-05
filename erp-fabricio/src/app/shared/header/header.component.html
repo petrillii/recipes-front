@@ -1,3 +1,13 @@
 <mat-toolbar>
-  <a href="/home">Alquimia de Sabores</a>
+  <div class="logo-container">
+    <a href="/home">Alquimia de Sabores</a>
+    <div class="logo-image">
+      <img src="assets/images/logo.jpeg" alt="" />
+    </div>
+  </div>
+  <span (click)="exportRecipes()">Exportar Receitas</span>
+  <a href="/create-recipe">Adicionar Receita</a>
+  <a href="/create-category">Adicionar Categoria</a>
+  <a href="/update-category">Editar Categoria</a>
+  <a *ngIf="!login" href="/login">Login</a>
 </mat-toolbar>

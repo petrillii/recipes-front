@@ -1,5 +1,5 @@
 .footer-content {
-  position: fixed;
+  position: inherit;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -7,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #FFDAB9;
   padding: 10px;
 }
 
