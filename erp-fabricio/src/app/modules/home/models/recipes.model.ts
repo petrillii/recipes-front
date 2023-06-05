@@ -1,7 +1,7 @@
 import { CategoryModel } from "./category.model";
 
 export class RecipesModel{
-  id?: number;
+  id!: number;
   title?: string;
   category?: CategoryModel;
   image_url?: string;

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RecipesModel } from '../models/recipes.model';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class RecipesService {
+  public recipes$ = new BehaviorSubject<RecipesModel[]>([]);
   private url = environment.api;
 
   constructor(
@@ -17,7 +18,15 @@ export class RecipesService {
   /**
    * Obtém todas as receitas
    */
-  getRecipes(): Observable<RecipesModel[]>{
+  getRecipesApi(): Observable<RecipesModel[]>{
     return this.http.get<RecipesModel[]>(this.url + '/recipes');
+  }
+
+  setRecipes(recipes: RecipesModel[]){
+    this.recipes$.next(recipes);
+  }
+
+  getRecipes(): RecipesModel[]{
+    return this.recipes$.getValue();
   }
 }

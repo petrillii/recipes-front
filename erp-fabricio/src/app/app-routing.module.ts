@@ -6,6 +6,7 @@ import { RegisterComponent } from './modules/authentication/register/register.co
 import { HomeComponent } from './modules/home/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ForgotPasswordComponent } from './modules/authentication/forgot-password/forgot-password.component';
+import { RecipeDetailsComponent } from './modules/home/recipe-details/recipe-details.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
   },
   {
     path: 'about', component: AboutUsComponent
+  },
+  {
+    path: 'recipe/:id', component: RecipeDetailsComponent
   }
 ];
 
