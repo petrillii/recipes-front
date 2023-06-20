@@ -14,7 +14,7 @@ Antes de executar esta aplicação, certifique-se de ter os seguintes requisitos
 1. Clone este repositório para o seu ambiente local:
 
    ```bash
-   git clone https://github.com/petrillii/trabFabricioFront
+   git clone https://github.com/petrillii/recipes-front
    ```
 
 2. Navegue até o diretório do projeto:
