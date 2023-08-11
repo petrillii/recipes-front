@@ -20,7 +20,7 @@ Antes de executar esta aplicação, certifique-se de ter os seguintes requisitos
 2. Navegue até o diretório do projeto:
 
    ```bash
-   cd erp-fabricio
+   cd recipes
    ```
 
 3. Instale as dependências do projeto:
